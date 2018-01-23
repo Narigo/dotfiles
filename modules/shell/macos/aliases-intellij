@@ -1,0 +1,2 @@
+# Open IntelliJ here - for example to start a new project in the current directory run: intellij .
+alias intellij='open -a /Applications/IntelliJ\ IDEA.app'

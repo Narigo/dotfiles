@@ -1,0 +1,4 @@
+# set unlimited history size
+HISTSIZE=
+HISTFILESIZE=
+

@@ -1,0 +1,2 @@
+# Give me a notification when a long running command has finished - usage: long_running_command; notifyme
+alias notifyme='osascript -e "display notification \"Command exited with status $?\" with title \"Done!\" sound name \"default\""'

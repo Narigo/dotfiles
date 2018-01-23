@@ -1,0 +1,4 @@
+# Adds a pomodoro timer
+POMODORO_TIME=25
+POMODORO_BREAK=5
+alias pomodoro="while true; do osascript -e 'display notification \"Pomodoro WORK until `date -v+$((${POMODORO_TIME}))M '+%H:%M:%S'`\" with title \"POMODORO\" sound name \"default\"' && echo -n 'Pomodoro WORK until ' && date -v+$((${POMODORO_TIME}))M '+%H:%M:%S' && sleep $((${POMODORO_TIME}*60)) && osascript -e 'display notification \"Break time until `date -v+$((${POMODORO_BREAK}))M '+%H:%M:%S'`\" with title \"BREAK\" sound name \"default\"' && echo -n 'Break time until ' && date -v+$((${POMODORO_BREAK}))M '+%H:%M:%S' && sleep $((${POMODORO_BREAK}*60)); done"

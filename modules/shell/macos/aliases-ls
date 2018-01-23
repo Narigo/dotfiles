@@ -1,0 +1,3 @@
+# ls with colors and some quicker navigation
+alias ls='ls --colors=auto'
+alias ll='ls -la'
