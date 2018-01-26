@@ -1,0 +1,57 @@
+# This is Git's per-user configuration file.
+[alias]
+  # A nicer git log with a piratey name
+  arrr = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an' - '%ai)%x1b[0m"
+
+  # Jump to next commit in branch
+  next = "!sh -c 'git checkout -q $(git rev-list --topo-order HEAD..master | tail -1); git log -1 --format=\"%h - %s\"'"
+  # Jump to previous commit in branch
+  prev = "!git checkout -q HEAD^; git log -1 --format='%h - %s'"
+
+  # List contributors with number of commits
+  contributors = shortlog --summary --numbered
+
+[push]
+
+  default = simple
+
+[color]
+
+  # Use colors in Git commands that are capable of colored output when
+  # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+  ui = auto
+
+[color "branch"]
+
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+
+  meta = yellow bold
+  frag = magenta bold # line info
+  old = red # deletions
+  new = green # additions
+
+[color "status"]
+
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[commit]
+
+  # https://help.github.com/articles/signing-commits-using-gpg/
+  gpgsign = true
+
+[core]
+
+  # Use custom `.gitignore` and `.gitattributes`
+  excludesfile = ~/.gitignore
+
+  autocrlf = input
+
+[remote "origin"]
+  # Fetch Pull Requests
+  fetch = +refs/pull/*/head:refs/remotes/origin/pr/*

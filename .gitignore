@@ -1,3 +1,5 @@
 .DS_Store
 .idea
 *.iml
+.backups
+.dry_run
