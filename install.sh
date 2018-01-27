@@ -89,6 +89,7 @@ copy_files() {
   from_dir="$1"
   to_dir="$2"
 
+  echo "Creating directory $to_dir if it does not exist"
   mkdir -p "$to_dir"
   for file_name in `ls -1A "$from_dir"`; do
     from="$from_dir/$file_name"
