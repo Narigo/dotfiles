@@ -8,4 +8,4 @@ repository](https://github.com/mathiasbynens/dotfiles). A great resource what yo
 ## Mac OS X
 
 1. Install Homebrew.
-2. Run `./install.sh` to setup the environment.
+2. Run `. install.sh` to setup the environment. For a dry-run to see what will be written, use `. install.sh -d`.
