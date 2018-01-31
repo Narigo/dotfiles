@@ -38,7 +38,7 @@ install_module() {
 
   if [ -e "$platform_file" ]; then
     echo "Concatenating files from $module_name into $platform_file"
-    file_name=`cat "$platform_file"`
+    file_name=`echo $(eval echo $(cat "$platform_file"))`
 
     if $dry_run ; then
       file_name=".dry_run/$file_name"
@@ -63,7 +63,7 @@ install_module() {
     cat "modules/$module_name/$platform/"* >> "$file_name"
 
   elif [ -e "$should_copy_files" ]; then
-    copy_files_to=`cat "$should_copy_files"`
+    copy_files_to=`echo $(eval echo $(cat $should_copy_files))`
 
     if $dry_run ; then
       copy_files_to=".dry_run/$copy_files_to"
@@ -94,6 +94,14 @@ copy_files() {
   for file_name in `ls -1A "$from_dir"`; do
     from="$from_dir/$file_name"
     to="$to_dir/$file_name"
+
+    # Back up file before overwriting
+    if [ -f $to ] && ! $dry_run; then
+      echo "Backing up $to into .backups/$to"
+      mkdir -p `dirname ".backups/$to"`
+      cp "$to" ".backups/$to"
+    fi
+
     echo "Copying $from to $to"
     cp "$from" "$to"
   done
