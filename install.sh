@@ -17,6 +17,7 @@ main() {
   if [ "$platform" != "" ]; then
     echo "Platform is '$platform'."
     settings_script="settings-${platform}.sh"
+    extra_script="extra-${platform}.sh"
 
     install_module "shell" "$platform" $dry_run
     install_module "git" "$platform" $dry_run
@@ -24,6 +25,11 @@ main() {
     if [ -e "./$settings_script" ] && ! $dry_run; then
       echo "Setting settings from $settings_script"
       . "$settings_script"
+    fi
+
+    if [ -e "./$extra_script" ] && ! $dry_run; then
+      echo "Setting settings from $extra_script"
+      . "$extra_script"
     fi
   fi
 }

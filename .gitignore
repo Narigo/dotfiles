@@ -3,3 +3,4 @@
 *.iml
 .backups
 .dry_run
+extra-*
