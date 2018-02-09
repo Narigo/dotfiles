@@ -7,7 +7,7 @@
   amend = commit --amend
 
   # add, check status, commit and push
-  asc = "!f() { git add $1; git status; local dummy; read -s -r -p 'Press any key to continue...' -n 1 dummy && git commit -sm \"$2\" ; }; f"
+  asc = "!f() { git add $1; git status; local dummy; read -s -r -p 'Press any key to continue...' -n 1 dummy && git commit -sm \"$2\" && git push; }; f"
 
   # Jump to next commit in branch
   next = "!sh -c 'git checkout -q $(git rev-list --topo-order HEAD..master | tail -1); git log -1 --format=\"%h - %s\"'"
