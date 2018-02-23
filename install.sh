@@ -39,7 +39,11 @@ install_module() {
   platform=$2;
   dry_run=$3;
 
-  platform_file="modules/${module_name}/file-${platform}"
+  settings_all="modules/${module_name}/.settings"
+  settings_platform="modules/${module_name}/.settings-${platform}"
+  [ -e "${settings_all}" ] && echo "settings for all platforms" && source "${settings_all}"
+  [ -e "${settings_platform}" ] && echo "settings for platform ${platform}" && source "${settings_platform}"
+
   should_copy_files="modules/${module_name}/.copy-files-to-${platform}"
 
   if [ -e "$platform_file" ]; then
