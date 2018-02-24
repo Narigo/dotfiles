@@ -39,16 +39,20 @@ install_module() {
   platform=$2;
   dry_run=$3;
 
+  unset platform_file
+  unset copy_files_to
+
+  module_dir="modules/$module_name"
   settings_all="modules/${module_name}/.settings"
   settings_platform="modules/${module_name}/.settings-${platform}"
-  [ -e "${settings_all}" ] && echo "settings for all platforms" && source "${settings_all}"
-  [ -e "${settings_platform}" ] && echo "settings for platform ${platform}" && source "${settings_platform}"
 
-  should_copy_files="modules/${module_name}/.copy-files-to-${platform}"
+  [ -e "${settings_all}" ] && echo "Found settings for all platforms" && source "${settings_all}"
+  [ -e "${settings_platform}" ] && echo "Found settings for platform ${platform}" && source "${settings_platform}"
 
+  echo "Installing module ${module_name}"
   if [ -e "$platform_file" ]; then
-    echo "Concatenating files from $module_name into $platform_file"
-    file_name=`echo $(eval echo $(cat "$platform_file"))`
+    echo "Found settings to concatenate files into ${platform_file}"
+    file_name="$platform_file"
 
     if $dry_run ; then
       file_name=".dry_run/$file_name"
@@ -72,14 +76,13 @@ install_module() {
     fi
     cat "modules/$module_name/$platform/"* >> "$file_name"
 
-  elif [ -e "$should_copy_files" ]; then
-    copy_files_to=`echo $(eval echo $(cat $should_copy_files))`
+  elif [ -e "$copy_files_to" ]; then
+    echo "Found settings to copy files to ${copy_files_to}"
 
     if $dry_run ; then
       copy_files_to=".dry_run/$copy_files_to"
     fi
 
-    module_dir="modules/$module_name"
     echo "Copying files from $module_dir to $copy_files_to"
     if [ -d "$module_dir/all" ]; then
       echo "Copying platform agnostic files"
@@ -91,7 +94,8 @@ install_module() {
     fi
 
   else
-    echo "Could not find installation file for platform $platform (looked for $platform_file)"
+    echo "Could not find proper installation settings for platform ${platform}."
+    echo "Please check '${module_dir}/.settings' and/or '${module_dir}/.settings-${platform}' !"
   fi
 }
 
