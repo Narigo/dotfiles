@@ -46,3 +46,5 @@ defaults write NSGlobalDomain com.apple.springing.delay -float 0
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
+# Only use UTF-8 in Terminal.app
+defaults write com.apple.terminal StringEncodings -array 4
