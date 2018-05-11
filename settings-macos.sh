@@ -48,5 +48,10 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Disable smart quotes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
+# Enable context menu in Finder to open a new Terminal window
+defaults write pbs 'NSServicesStatus."com.apple.Terminal - New Terminal Tab at Folder - newTerminalAtFolder"."enabled_context_menu"' -bool true
+defaults write pbs 'NSServicesStatus."com.apple.Terminal - New Terminal Tab at Folder - newTerminalAtFolder"."enabled_services_menu"' -bool true
+defaults write pbs 'NSServicesStatus."com.apple.Terminal - New Terminal Tab at Folder - newTerminalAtFolder"."key_equivalent"' -string "@^t"
+
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
