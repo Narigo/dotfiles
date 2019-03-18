@@ -1,0 +1,2 @@
+# Put cargo binary into path for Rust
+export PATH="$HOME/.cargo/bin:$PATH"
