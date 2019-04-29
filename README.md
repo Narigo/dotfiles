@@ -2,14 +2,13 @@
 
 Setting up my environments in a modular fashion.
 
-A lot of settings and commands are taken from [Mathias Bynens dotfiles 
-repository](https://github.com/mathiasbynens/dotfiles). A great resource what you can set up!
+A lot of settings and commands are taken from
+[Mathias Bynens dotfiles repository](https://github.com/mathiasbynens/dotfiles). A great resource what you can set up!
 
 ## Mac OS X
 
-1. Install Homebrew.
+1. Install [Homebrew](https://brew.sh/).
 2. Run `. install.sh` to setup the environment. For a dry-run to see what will be written, use `. install.sh -d`.
-
 
 ## Modules
 
