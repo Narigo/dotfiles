@@ -55,3 +55,6 @@ defaults write pbs 'NSServicesStatus."com.apple.Terminal - New Terminal Tab at F
 
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
+
+# Ignore CDs from auto mounting
+defaults write com.apple.digihub com.apple.digihub.cd.music.appeared -dict-add action 1
