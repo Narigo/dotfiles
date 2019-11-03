@@ -16,8 +16,14 @@ main() {
 
   if [ "$platform" != "" ]; then
     echo "Platform is '$platform'."
+    before_script="before-${platform}.sh"
     settings_script="settings-${platform}.sh"
     extra_script="extra-${platform}.sh"
+
+    if [ -e "./$before_script" ] && ! $dry_run; then
+      echo "Running script before installing modules: $before_script"
+      . "$before_script"
+    fi
 
     install_module "shell" "$platform" $dry_run
     install_module "git" "$platform" $dry_run
