@@ -5,6 +5,9 @@ Setting up my environments in a modular fashion.
 A lot of settings and commands are taken from
 [Mathias Bynens dotfiles repository](https://github.com/mathiasbynens/dotfiles). A great resource what you can set up!
 
+**Installing Rust:**
+https://www.rust-lang.org/tools/install
+
 ## Mac OS X
 
 1. Install [Homebrew](https://brew.sh/).
