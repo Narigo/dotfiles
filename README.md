@@ -5,8 +5,18 @@ Setting up my environments in a modular fashion.
 A lot of settings and commands are taken from
 [Mathias Bynens dotfiles repository](https://github.com/mathiasbynens/dotfiles). A great resource what you can set up!
 
-**Installing Rust:**
-https://www.rust-lang.org/tools/install
+**Update February 2020**
+
+This repository needs a major overhaul. Since Mac OS changed their default 
+shell to zsh and I kind of get used to it, I should put aliases into oh-my-zsh
+plugins.
+
+I started sandboxing my applications through docker as well. With installing
+[docker-box](https://github.com/compose-us-research/docker-box), I can use all
+of the programming languages I need quite quickly and especially use it more
+safely.
+
+____
 
 ## Mac OS X
 
