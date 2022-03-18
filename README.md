@@ -16,6 +16,11 @@ I started sandboxing my applications through docker as well. With installing
 of the programming languages I need quite quickly and especially use it more
 safely.
 
+I have added Automator workflows that I don't want to miss on my next machine.
+There are flows to automatically encrypt a PDF and send it through email,
+sorting PDF documents after scanning them with a document feeder that cannot
+turn pages and a quick action to turn a screen recording `.mov` into a `.gif`.
+
 ____
 
 ## Mac OS X
