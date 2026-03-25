@@ -1,3 +1,0 @@
-BREW_PREFIX=$(brew --prefix)
-export PATH=$PATH:"$BREW_PREFIX/bin"
-export PATH=$PATH:"$BREW_PREFIX/sbin"
