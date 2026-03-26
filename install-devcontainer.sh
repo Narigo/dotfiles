@@ -26,20 +26,15 @@ if [ -d "$HOME/.oh-my-zsh/custom/plugins" ]; then
     fi
   done
   # Ensure plugins are activated in .zshrc
-  DEVCONTAINER_PLUGINS=(git pw2cb)
-  for plugin in "${DEVCONTAINER_PLUGINS[@]}"; do
-    if grep -q "^plugins=(" "$HOME/.zshrc" 2>/dev/null; then
-      if ! grep "^plugins=(" "$HOME/.zshrc" | grep -q "$plugin"; then
-        sed -i "s/^plugins=(\(.*\))/plugins=(\1 $plugin)/" "$HOME/.zshrc"
-        echo "Activated oh-my-zsh plugin: $plugin"
-      else
-        echo "oh-my-zsh plugin already active: $plugin"
-      fi
-    else
-      echo "plugins=($plugin)" >> "$HOME/.zshrc"
-      echo "Created plugins list with: $plugin"
-    fi
-  done
+  DEVCONTAINER_PLUGINS="git pw2cb"
+  if grep -q "^plugins=($DEVCONTAINER_PLUGINS)" "$HOME/.zshrc" 2>/dev/null; then
+    echo "oh-my-zsh plugins already set"
+  else
+    # Remove existing plugins line if present, then set ours
+    sed -i '/^plugins=(/d' "$HOME/.zshrc" 2>/dev/null || true
+    echo "plugins=($DEVCONTAINER_PLUGINS)" >> "$HOME/.zshrc"
+    echo "Set oh-my-zsh plugins: $DEVCONTAINER_PLUGINS"
+  fi
 else
   echo "oh-my-zsh not found, skipping plugin setup"
 fi
