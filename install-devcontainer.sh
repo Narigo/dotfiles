@@ -14,15 +14,15 @@ else
 fi
 
 # Oh My Zsh custom plugins
-if [ -d "$HOME/.oh-my-zsh/custom" ]; then
-  for plugin_dir in "$DOTFILES_DIR"/oh-my-zsh/custom/*/; do
+if [ -d "$HOME/.oh-my-zsh/custom/plugins" ]; then
+  for plugin_dir in "$DOTFILES_DIR"/oh-my-zsh/custom/plugins/*/; do
     plugin_name="$(basename "$plugin_dir")"
     target="$HOME/.oh-my-zsh/custom/plugins/$plugin_name"
-    if [ ! -L "$target" ]; then
-      ln -sf "$plugin_dir" "$target"
-      echo "Linked oh-my-zsh plugin: $plugin_name"
-    else
+    if [ -L "$target" ]; then
       echo "oh-my-zsh plugin already linked: $plugin_name"
+    else
+      ln -sn "$plugin_dir" "$target"
+      echo "Linked oh-my-zsh plugin: $plugin_name"
     fi
   done
 else
