@@ -30,9 +30,7 @@ if [ -d "$HOME/.oh-my-zsh/custom/plugins" ]; then
   if grep -qF "plugins=($DEVCONTAINER_PLUGINS)" "$HOME/.zshrc" 2>/dev/null; then
     echo "oh-my-zsh plugins already set"
   else
-    # Remove existing plugins line if present, then set ours
-    sed -i '/^plugins=(/d' "$HOME/.zshrc" 2>/dev/null || true
-    echo "plugins=($DEVCONTAINER_PLUGINS)" >> "$HOME/.zshrc"
+    sed -i "s/^plugins=(.*)$/plugins=($DEVCONTAINER_PLUGINS)/" "$HOME/.zshrc"
     echo "Set oh-my-zsh plugins: $DEVCONTAINER_PLUGINS"
   fi
 else
