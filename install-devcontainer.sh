@@ -7,15 +7,6 @@ DEFAULT_PLUGINS="git"
 
 PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Git: add include for shared config (keeps personal user.name, email, signing intact)
-INCLUDE_PATH="$PROJECT_DIR/git/.gitconfig"
-if ! git config --global --get-all include.path 2>/dev/null | grep -qF "$INCLUDE_PATH"; then
-  git config --global --add include.path "$INCLUDE_PATH"
-  echo "Added git include for $INCLUDE_PATH"
-else
-  echo "Git include already present"
-fi
-
 # Oh My Zsh custom plugins
 if [ -d "$HOME/.oh-my-zsh/custom/plugins" ]; then
   for plugin_dir in "$PROJECT_DIR"/oh-my-zsh/custom/plugins/*/; do
