@@ -44,6 +44,32 @@ if [ -d "$HOME/.oh-my-zsh/custom/plugins" ]; then
       echo "Linked oh-my-zsh plugin: $plugin_name"
     fi
   done
+
+  # Ensure custom plugins are activated in .zshrc (preserves existing plugins)
+  if [ -f "$HOME/.zshrc" ] && grep -qE '^plugins=\(.*\)$' "$HOME/.zshrc"; then
+    current_plugins=$(grep -E '^plugins=\(.*\)$' "$HOME/.zshrc" | sed -E 's/^plugins=\((.*)\)$/\1/')
+    new_plugins="$current_plugins"
+    for plugin_dir in "$DOTFILES_DIR"/oh-my-zsh/custom/plugins/*/; do
+      plugin_name="$(basename "$plugin_dir")"
+      if [ -f "$plugin_dir/.platforms" ] && ! grep -q "macos" "$plugin_dir/.platforms"; then
+        echo "Skipping plugin $plugin_name (not supported on macos)"
+        continue
+      fi
+      if echo " $new_plugins " | grep -qF " $plugin_name "; then
+        echo "oh-my-zsh plugin already activated: $plugin_name"
+      else
+        new_plugins="$new_plugins $plugin_name"
+        echo "Activating oh-my-zsh plugin: $plugin_name"
+      fi
+    done
+    new_plugins=$(echo "$new_plugins" | xargs)
+    if [ "$current_plugins" != "$new_plugins" ]; then
+      sed -i '' "s/^plugins=(.*)$/plugins=($new_plugins)/" "$HOME/.zshrc"
+      echo "Updated oh-my-zsh plugins: $new_plugins"
+    fi
+  else
+    echo "No plugins=(...) line in .zshrc, skipping activation"
+  fi
 else
   echo "oh-my-zsh not found, skipping plugin setup"
 fi
