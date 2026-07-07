@@ -20,6 +20,16 @@ vibeit() {
         git show FETCH_HEAD:.gitignore > .gitignore
     fi
 
+    if read -q "REPLY?Set up the devcontainer from the host now? [y/N] "; then
+        echo
+        echo "Setting up the devcontainer from the host."
+        .devcontainer/setup-on-host.sh
+    else
+        echo
+        echo "Skipping devcontainer setup."
+        return
+    fi
+
     git add .devcontainer .claude CLAUDE.md .gitignore && \
     git commit -sm "chore: Add viboilerplate"
 }
